@@ -80,6 +80,12 @@ func main() {
 		fmt.Printf("get 1: %v \n", obj.Get(1))
 		fmt.Printf("get 3: %v \n", obj.Get(3))
 		fmt.Printf("get 4: %v \n", obj.Get(4))
+	case "GenerateParenthesis":
+		param := 3
+		in := []reflect.Value{reflect.ValueOf(param)}
+		res := meth.Call(in)
+		fmt.Printf("Answer: %v \n", res[0])
+		fmt.Printf("Expected: [((())) (()()) (())() ()(()) ()()()]")
 	default:
 		// current debug problem
 		meth.Call(nil)
