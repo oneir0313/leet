@@ -3,11 +3,12 @@ package main
 import (
 	"flag"
 	"fmt"
-	"leet/FreqStack"
-	"leet/LRUCache"
-	problems "leet/problems"
 	"os"
 	"reflect"
+
+	"github.com/oneir0313/leet/FreqStack"
+	"github.com/oneir0313/leet/LRUCache"
+	problems "github.com/oneir0313/leet/problems"
 )
 
 var (
