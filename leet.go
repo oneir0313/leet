@@ -86,6 +86,11 @@ func main() {
 		res := meth.Call(in)
 		fmt.Printf("Answer: %v \n", res[0])
 		fmt.Printf("Expected: [((())) (()()) (())() ()(()) ()()()]")
+	case "UniquePaths":
+		in := []reflect.Value{reflect.ValueOf(23), reflect.ValueOf(12)}
+		res := meth.Call(in)
+		fmt.Printf("Answer: %v \n", res[0])
+		fmt.Printf("Expected: 193536720")
 	default:
 		// current debug problem
 		meth.Call(nil)
