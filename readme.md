@@ -35,6 +35,7 @@
 ```
 
 3. execute code
-    
-    
-        go run leet.go -p TwoSum
+
+```
+    go run leet.go -p TwoSum
+```
