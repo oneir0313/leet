@@ -90,10 +90,18 @@ func main() {
 	case "UniquePaths":
 		in := []reflect.Value{reflect.ValueOf(23), reflect.ValueOf(12)}
 		res := meth.Call(in)
-		fmt.Printf("Answer: %v \n", res[0])
-		fmt.Printf("Expected: 193536720")
+		check(193536720, res[0].Interface())
 	default:
 		// current debug problem
 		meth.Call(nil)
 	}
+}
+
+func check(a interface{}, b interface{}) {
+	fmt.Printf("your output: %v, expected answer: %v \n", a, b)
+	if a == b {
+		fmt.Printf("answer is correct!\n")
+		return
+	}
+	panic("answer is wrong!")
 }
