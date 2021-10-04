@@ -44,20 +44,17 @@ func main() {
 		param := []int{0,1,0,2,1,0,1,3,2,1,2,1}
 		in := []reflect.Value{reflect.ValueOf(param)}
 		res := meth.Call(in)
-		fmt.Printf("Answer: %v \n", res[0])
-		fmt.Printf("Expected: 6")
+		check(6, res[0].Interface())
 	case "SmallestRange":
 		param := [][]int{{4,10,15,24,26},{0,9,12,20},{5,18,22,30}}
 		in := []reflect.Value{reflect.ValueOf(param)}
 		res := meth.Call(in)
-		fmt.Printf("Answer: %v \n", res[0])
-		fmt.Printf("Expected: [20 24]")
+		check([]int{20, 24}, res[0].Interface())
 	case "AllPathsSourceTarget":
 		param := [][]int{{1,2},{3},{3},{}}
 		in := []reflect.Value{reflect.ValueOf(param)}
 		res := meth.Call(in)
-		fmt.Printf("Answer: %v \n", res[0])
-		fmt.Printf("Expected: [[0 1 3] [0 2 3]]")
+		check([][]int{{0,1,3},{0,2,3}}, res[0].Interface())
 	case "FreqStack":
 		obj := FreqStack.Constructor();
 		obj.Push(5);
@@ -66,27 +63,26 @@ func main() {
 		obj.Push(7);
 		obj.Push(4);
 		obj.Push(5);
-		fmt.Printf("pop: %v, Expected: 5 \n", obj.Pop())
-		fmt.Printf("pop: %v, Expected: 7 \n", obj.Pop())
-		fmt.Printf("pop: %v, Expected: 5 \n", obj.Pop())
-		fmt.Printf("pop: %v, Expected: 4 \n", obj.Pop())
+		check(5, obj.Pop())
+		check(7, obj.Pop())
+		check(5, obj.Pop())
+		check(4, obj.Pop())
 	case "LRUCache":
 		obj := LRUCache.Constructor(2);
 		obj.Put(1,1);
 		obj.Put(2,2);
-		fmt.Printf("get 1: %v \n", obj.Get(1))
+		check(1, obj.Get(1))
 		obj.Put(3,3);
-		fmt.Printf("get 2: %v \n", obj.Get(2))
+		check(-1, obj.Get(2))
 		obj.Put(4,4);
-		fmt.Printf("get 1: %v \n", obj.Get(1))
-		fmt.Printf("get 3: %v \n", obj.Get(3))
-		fmt.Printf("get 4: %v \n", obj.Get(4))
+		check(-1, obj.Get(1))
+		check(3, obj.Get(3))
+		check(4, obj.Get(4))
 	case "GenerateParenthesis":
 		param := 3
 		in := []reflect.Value{reflect.ValueOf(param)}
 		res := meth.Call(in)
-		fmt.Printf("Answer: %v \n", res[0])
-		fmt.Printf("Expected: [((())) (()()) (())() ()(()) ()()()]")
+		check([]string{"((()))","(()())","(())()","()(())","()()()"}, res[0].Interface())
 	case "UniquePaths":
 		in := []reflect.Value{reflect.ValueOf(23), reflect.ValueOf(12)}
 		res := meth.Call(in)
@@ -102,7 +98,15 @@ func main() {
 }
 
 func check(a interface{}, b interface{}) {
-	fmt.Printf("your output: %v, expected answer: %v \n", a, b)
+	fmt.Printf("your output: %v, expected answer: %v \n", b, a)
+
+	if reflect.TypeOf(a).Kind() == reflect.Slice {
+		if reflect.DeepEqual(a, b) {
+			fmt.Printf("answer is correct!\n")
+			return
+		}
+		panic("answer is wrong!")
+	} 
 	if a == b {
 		fmt.Printf("answer is correct!\n")
 		return

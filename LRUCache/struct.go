@@ -1,41 +1,79 @@
 package LRUCache
 
 type LRUCache struct {
-    m map[int]int
-	cap int
-	stack []int
+	Head, Tail *Node
+	Mp         map[int]*Node
+	Capacity   int
 }
 
+type Node struct {
+	Prev, Next *Node
+	Key, Value int
+}
 
 func Constructor(capacity int) LRUCache {
-    return LRUCache {
-		m: make(map[int]int),
-		cap: capacity,
-		stack: []int{},
+	head := Node{
+		Prev:  nil,
+		Next:  nil,
+		Key:   0,
+		Value: 0,
+	}
+
+	tail := Node{
+		Prev:  nil,
+		Next:  nil,
+		Key:   0,
+		Value: 0,
+	}
+
+	head.Next = &tail
+	tail.Prev = &head
+	return LRUCache{
+		Head:     &head,
+		Tail:     &tail,
+		Mp:       make(map[int]*Node),
+		Capacity: capacity,
 	}
 }
 
-
-func (cache *LRUCache) Get(key int) int {
-    v, ok := cache.m[key]
-	if !ok {
-		return -1
+func (this *LRUCache) Get(key int) int {
+	if n, ok := this.Mp[key]; ok {
+		this.remove(n)
+		this.insert(n)
+		return n.Value
 	}
-	return v
+
+	return -1
 }
 
+func (this *LRUCache) Put(key int, value int) {
+	if _, ok := this.Mp[key]; ok {
+		this.remove(this.Mp[key])
+	}
 
-func (cache *LRUCache) Put(key int, value int)  {
-	_, ok := cache.m[key]
-	if ok {
-		cache.m[key] = value
-		return
+	if len(this.Mp) == this.Capacity {
+		this.remove(this.Tail.Prev)
 	}
-    if len(cache.stack) >= cache.cap {
-		n := len(cache.stack) - 1 
-		delete(cache.m, cache.stack[n])
-		cache.stack = cache.stack[:n]
-	}
-	cache.m[key] = value;
-	cache.stack = append(cache.stack, key)
+
+	this.insert(&Node{
+		Prev:  nil,
+		Next:  nil,
+		Key:   key,
+		Value: value,
+	})
+}
+
+func (this *LRUCache) remove(node *Node) {
+	delete(this.Mp, node.Key)
+	node.Prev.Next = node.Next
+	node.Next.Prev = node.Prev
+}
+
+func (this *LRUCache) insert(node *Node) {
+	this.Mp[node.Key] = node
+	next := this.Head.Next
+	this.Head.Next = node
+	node.Prev = this.Head
+	next.Prev = node
+	node.Next = next
 }
