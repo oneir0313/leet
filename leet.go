@@ -91,6 +91,10 @@ func main() {
 		in := []reflect.Value{reflect.ValueOf(23), reflect.ValueOf(12)}
 		res := meth.Call(in)
 		check(193536720, res[0].Interface())
+	case "UniquePathsWithObstacles":
+		in := []reflect.Value{reflect.ValueOf([][]int{{0,0,0},{0,1,0},{0,0,0}})}
+		res := meth.Call(in)
+		check(2, res[0].Interface())
 	default:
 		// current debug problem
 		meth.Call(nil)
