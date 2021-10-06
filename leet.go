@@ -91,6 +91,11 @@ func main() {
 		in := []reflect.Value{reflect.ValueOf([][]int{{0,0,0},{0,1,0},{0,0,0}})}
 		res := meth.Call(in)
 		check(2, res[0].Interface())
+		//[[1,0,0,0],[0,0,0,0],[0,0,2,-1]]
+	case "UniquePathsIII":
+		in := []reflect.Value{reflect.ValueOf([][]int{{1,0,0,0},{0,0,0,0},{0,0,2,-1}})}
+		res := meth.Call(in)
+		check(2, res[0].Interface())
 	default:
 		// current debug problem
 		meth.Call(nil)
