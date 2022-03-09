@@ -28,13 +28,52 @@ func usage() {
 }
 
 func main() {
-	flag.Parse()
 
 	m := problems.Problem{}
+	flag.Func("l", "list names of all problems", func(string) error {
+		t := reflect.TypeOf(&m)
+		for i := 0; i < t.NumMethod(); i++ {
+			m := t.Method(i)
+			fmt.Println(m.Name)
+		}
+		os.Exit(0)
+		return nil
+	})
+	flag.Parse()
 
 	fmt.Println("problem name: ", name)
+
+	// struct problems
+	switch name {
+	case "FreqStack":
+		obj := FreqStack.Constructor()
+		obj.Push(5)
+		obj.Push(7)
+		obj.Push(5)
+		obj.Push(7)
+		obj.Push(4)
+		obj.Push(5)
+		check(5, obj.Pop())
+		check(7, obj.Pop())
+		check(5, obj.Pop())
+		check(4, obj.Pop())
+		return
+	case "LRUCache":
+		obj := LRUCache.Constructor(2)
+		obj.Put(1, 1)
+		obj.Put(2, 2)
+		check(1, obj.Get(1))
+		obj.Put(3, 3)
+		check(-1, obj.Get(2))
+		obj.Put(4, 4)
+		check(-1, obj.Get(1))
+		check(3, obj.Get(3))
+		check(4, obj.Get(4))
+		return
+	}
+
 	meth := reflect.ValueOf(m).MethodByName(name)
-	if (meth.Kind() != reflect.Func) && name != "FreqStack" && name != "LRUCache" {
+	if meth.Kind() != reflect.Func {
 		fmt.Println("can not find problem name")
 		return
 	}
@@ -55,29 +94,7 @@ func main() {
 		in := []reflect.Value{reflect.ValueOf(param)}
 		res := meth.Call(in)
 		check([][]int{{0, 1, 3}, {0, 2, 3}}, res[0].Interface())
-	case "FreqStack":
-		obj := FreqStack.Constructor()
-		obj.Push(5)
-		obj.Push(7)
-		obj.Push(5)
-		obj.Push(7)
-		obj.Push(4)
-		obj.Push(5)
-		check(5, obj.Pop())
-		check(7, obj.Pop())
-		check(5, obj.Pop())
-		check(4, obj.Pop())
-	case "LRUCache":
-		obj := LRUCache.Constructor(2)
-		obj.Put(1, 1)
-		obj.Put(2, 2)
-		check(1, obj.Get(1))
-		obj.Put(3, 3)
-		check(-1, obj.Get(2))
-		obj.Put(4, 4)
-		check(-1, obj.Get(1))
-		check(3, obj.Get(3))
-		check(4, obj.Get(4))
+
 	case "GenerateParenthesis":
 		param := 3
 		in := []reflect.Value{reflect.ValueOf(param)}
