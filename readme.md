@@ -1,9 +1,12 @@
 # LeetCode by Golang 
 
->just to learn and record
+>learn & record & debug & test
 
 ## Usage
 
+    # list all problems
+    go run leet.go -l
+    # run problem
     go run leet.go -p {Problem Name}
 
 
