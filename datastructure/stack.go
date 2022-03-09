@@ -17,9 +17,9 @@ func (s *Stack) Pop() (int, bool) {
 	if s.IsEmpty() {
 		return 0, false
 	} else {
-		index := len(*s) - 1 // Get the index of the top most element.
+		index := len(*s) - 1   // Get the index of the top most element.
 		element := (*s)[index] // Index into the slice and obtain the element.
-		*s = (*s)[:index] // Remove it from the stack by slicing it off.
+		*s = (*s)[:index]      // Remove it from the stack by slicing it off.
 		return element, true
 	}
 }
@@ -29,5 +29,5 @@ func (s *Stack) Top() int {
 	if l == 0 {
 		return 0
 	}
-	return (*s)[l - 1]
+	return (*s)[l-1]
 }

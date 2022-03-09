@@ -16,7 +16,7 @@ func Constructor() FreqStack {
 	}
 }
 
-func (fs *FreqStack) Push(x int)  {
+func (fs *FreqStack) Push(x int) {
 	// push stack
 	fs.rawStack = append(fs.rawStack, x)
 	// increase freq
@@ -32,7 +32,7 @@ func (fs *FreqStack) Push(x int)  {
 
 func (fs *FreqStack) Pop() int {
 	// top->bottom, find first element which freq equal to maxFreq
-	for i := len(fs.rawStack)-1; i >= 0; i-- {
+	for i := len(fs.rawStack) - 1; i >= 0; i-- {
 		if fs.freqHash[fs.rawStack[i]] == fs.maxFreq {
 			fs.freqCounter[fs.maxFreq]--
 			fs.freqCounter[fs.maxFreq-1]++
