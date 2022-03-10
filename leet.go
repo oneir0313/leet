@@ -94,7 +94,6 @@ func main() {
 		in := []reflect.Value{reflect.ValueOf(param)}
 		res := meth.Call(in)
 		check([][]int{{0, 1, 3}, {0, 2, 3}}, res[0].Interface())
-
 	case "GenerateParenthesis":
 		param := 3
 		in := []reflect.Value{reflect.ValueOf(param)}
@@ -113,6 +112,10 @@ func main() {
 		in := []reflect.Value{reflect.ValueOf([][]int{{1, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 2, -1}})}
 		res := meth.Call(in)
 		check(2, res[0].Interface())
+	case "RegexMatch":
+		in := []reflect.Value{reflect.ValueOf("abbbcdef"), reflect.ValueOf("a*b*c...")}
+		res := meth.Call(in)
+		check(true, res[0].Interface())
 	default:
 		// current debug problem
 		meth.Call(nil)
