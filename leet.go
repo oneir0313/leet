@@ -122,19 +122,19 @@ func main() {
 	}
 }
 
-func check(a interface{}, b interface{}) {
+func check(a interface{}, b interface{}){
 	fmt.Printf("your output: %v, expected answer: %v \n", b, a)
 
 	if reflect.TypeOf(a).Kind() == reflect.Slice {
 		if reflect.DeepEqual(a, b) {
-			fmt.Printf("answer is correct!\n")
+			fmt.Println("answer is correct!")
 			return
 		}
-		panic("answer is wrong!")
+		fmt.Println("answer is wrong!")
 	}
 	if a == b {
-		fmt.Printf("answer is correct!\n")
+		fmt.Println("answer is correct!")
 		return
 	}
-	panic("answer is wrong!")
+	fmt.Println("answer is wrong!")
 }
