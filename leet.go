@@ -30,17 +30,17 @@ func usage() {
 func main() {
 
 	m := problems.Problem{}
-	flag.Func("l", "list names of all problems", func(string) error {
+
+	showList := flag.Bool("l", false, "list names of all problems")
+	flag.Parse()
+	if *showList {
 		t := reflect.TypeOf(&m)
 		for i := 0; i < t.NumMethod(); i++ {
 			m := t.Method(i)
 			fmt.Println(m.Name)
 		}
-		os.Exit(0)
-		return nil
-	})
-	flag.Parse()
-
+		return
+	}
 	fmt.Println("problem name: ", name)
 
 	// struct problems
