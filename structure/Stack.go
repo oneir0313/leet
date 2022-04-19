@@ -1,7 +1,11 @@
-package datastructure
+package structure
 
 type Stack []int
 
+func NewStack() Stack {
+	return Stack{}
+}
+ 
 // IsEmpty: check if stack is empty
 func (s *Stack) IsEmpty() bool {
 	return len(*s) == 0
