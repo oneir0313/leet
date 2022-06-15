@@ -116,6 +116,14 @@ func main() {
 		in := []reflect.Value{reflect.ValueOf("abbbcdef"), reflect.ValueOf("a*b*c...")}
 		res := meth.Call(in)
 		check(true, res[0].Interface())
+	case "CourseSchedule":
+		in := []reflect.Value{reflect.ValueOf(20), reflect.ValueOf([][]int{{0,10},{3,18},{5,5},{6,11},{11,14},{13,1},{15,1},{17,4}})}
+		res := meth.Call(in)
+		check(false, res[0].Interface())
+	case "RemoveOuterParentheses":
+		in := []reflect.Value{reflect.ValueOf("(()())(())")}
+		res := meth.Call(in)
+		check("()()()", res[0].Interface())
 	default:
 		// current debug problem
 		meth.Call(nil)
