@@ -6,9 +6,8 @@ import (
 	"os"
 	"reflect"
 
-	"github.com/oneir0313/leet/FreqStack"
-	"github.com/oneir0313/leet/LRUCache"
 	problems "github.com/oneir0313/leet/problems"
+	structure "github.com/oneir0313/leet/structure"
 )
 
 var (
@@ -30,23 +29,25 @@ func usage() {
 func main() {
 
 	m := problems.Problem{}
-	flag.Func("l", "list names of all problems", func(string) error {
+
+	showList := flag.Bool("l", false, "list names of all problems")
+	flag.Parse()
+	if *showList {
 		t := reflect.TypeOf(&m)
 		for i := 0; i < t.NumMethod(); i++ {
 			m := t.Method(i)
 			fmt.Println(m.Name)
 		}
-		os.Exit(0)
-		return nil
-	})
-	flag.Parse()
-
+		fmt.Println("FreqStack")
+		fmt.Println("LRUCache")
+		return
+	}
 	fmt.Println("problem name: ", name)
 
 	// struct problems
 	switch name {
 	case "FreqStack":
-		obj := FreqStack.Constructor()
+		obj := structure.NewFreqStack()
 		obj.Push(5)
 		obj.Push(7)
 		obj.Push(5)
@@ -59,7 +60,7 @@ func main() {
 		check(4, obj.Pop())
 		return
 	case "LRUCache":
-		obj := LRUCache.Constructor(2)
+		obj := structure.NewLRUCache(2)
 		obj.Put(1, 1)
 		obj.Put(2, 2)
 		check(1, obj.Get(1))
@@ -69,6 +70,16 @@ func main() {
 		check(-1, obj.Get(1))
 		check(3, obj.Get(3))
 		check(4, obj.Get(4))
+		return
+	case "Stack":
+		obj := structure.NewStack()
+		obj.Push(1)
+		obj.Push(2)
+		check(2, obj.Top())
+		obj.Push(5)
+		v, ok := obj.Pop()
+		check(5, v)
+		check(true, ok)
 		return
 	}
 

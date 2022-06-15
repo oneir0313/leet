@@ -1,4 +1,4 @@
-package FreqStack
+package structure
 
 type FreqStack struct {
 	rawStack    []int       // raw stack
@@ -7,7 +7,7 @@ type FreqStack struct {
 	freqHash    map[int]int // key: number, value: freq
 }
 
-func Constructor() FreqStack {
+func NewFreqStack() FreqStack {
 	return FreqStack{
 		rawStack:    nil,
 		maxFreq:     0,

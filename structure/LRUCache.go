@@ -1,4 +1,4 @@
-package LRUCache
+package structure
 
 type LRUCache struct {
 	Head, Tail *Node
@@ -11,7 +11,7 @@ type Node struct {
 	Key, Value int
 }
 
-func Constructor(capacity int) LRUCache {
+func NewLRUCache(capacity int) LRUCache {
 	head := Node{
 		Prev:  nil,
 		Next:  nil,
