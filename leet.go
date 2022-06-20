@@ -143,6 +143,10 @@ func main() {
 		in := []reflect.Value{reflect.ValueOf([]int{2,7,4,1,8,1})}
 		res := meth.Call(in)
 		check(1, res[0].Interface())
+	case "RestoreString":
+		in := []reflect.Value{reflect.ValueOf("codeleet"), reflect.ValueOf([]int{4,5,6,7,0,2,1,3})}
+		res := meth.Call(in)
+		check("leetcode", res[0].Interface())
 	default:
 		// current debug problem
 		meth.Call(nil)
