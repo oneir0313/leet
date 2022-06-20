@@ -147,6 +147,10 @@ func main() {
 		in := []reflect.Value{reflect.ValueOf("codeleet"), reflect.ValueOf([]int{4,5,6,7,0,2,1,3})}
 		res := meth.Call(in)
 		check("leetcode", res[0].Interface())
+	case "BalancedStringSplit":
+		in := []reflect.Value{reflect.ValueOf("RLRRLLRLRL")}
+		res := meth.Call(in)
+		check(4, res[0].Interface())
 	default:
 		// current debug problem
 		meth.Call(nil)
