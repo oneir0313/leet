@@ -135,6 +135,14 @@ func main() {
 		in := []reflect.Value{reflect.ValueOf("(()())(())")}
 		res := meth.Call(in)
 		check("()()()", res[0].Interface())
+	case "MinRemoveToMakeValid":
+		in := []reflect.Value{reflect.ValueOf("lee(t(c)o)de)")}
+		res := meth.Call(in)
+		check("lee(t(c)o)de", res[0].Interface())
+	case "LastStoneWeight":
+		in := []reflect.Value{reflect.ValueOf([]int{2,7,4,1,8,1})}
+		res := meth.Call(in)
+		check(1, res[0].Interface())
 	default:
 		// current debug problem
 		meth.Call(nil)
