@@ -12,17 +12,17 @@ func (p Problem) RemoveOuterParentheses(s string) string {
 			stackLen := len(stack)
 			if stackLen == 1 {
 				mark[stack[0]] = true
-                mark[i] = true
-			} 
+				mark[i] = true
+			}
 			stack = stack[:stackLen-1]
 		}
 	}
-    resRune := []rune{}
-    for i, v := range s {
-        if mark[i] { 
-            continue
-        }
-        resRune = append(resRune, v)
+	resRune := []rune{}
+	for i, v := range s {
+		if mark[i] {
+			continue
+		}
+		resRune = append(resRune, v)
 	}
 	return string(resRune)
 }
@@ -34,15 +34,15 @@ func RemoveOuterParenthesesFromDisscusion(s string) string {
 		switch s[i] {
 		case '(':
 			if depth > 0 {
-				res.WriteString(s[i:i+1])
+				res.WriteString(s[i : i+1])
 			}
 			depth++
 		case ')':
 			depth--
 			if depth > 0 {
-				res.WriteString(s[i:i+1])
+				res.WriteString(s[i : i+1])
 			}
 		}
 	}
-	return res.String()	
+	return res.String()
 }

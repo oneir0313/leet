@@ -128,7 +128,7 @@ func main() {
 		res := meth.Call(in)
 		check(true, res[0].Interface())
 	case "CourseSchedule":
-		in := []reflect.Value{reflect.ValueOf(20), reflect.ValueOf([][]int{{0,10},{3,18},{5,5},{6,11},{11,14},{13,1},{15,1},{17,4}})}
+		in := []reflect.Value{reflect.ValueOf(20), reflect.ValueOf([][]int{{0, 10}, {3, 18}, {5, 5}, {6, 11}, {11, 14}, {13, 1}, {15, 1}, {17, 4}})}
 		res := meth.Call(in)
 		check(false, res[0].Interface())
 	case "RemoveOuterParentheses":
@@ -140,24 +140,36 @@ func main() {
 		res := meth.Call(in)
 		check("lee(t(c)o)de", res[0].Interface())
 	case "LastStoneWeight":
-		in := []reflect.Value{reflect.ValueOf([]int{2,7,4,1,8,1})}
+		in := []reflect.Value{reflect.ValueOf([]int{2, 7, 4, 1, 8, 1})}
 		res := meth.Call(in)
 		check(1, res[0].Interface())
 	case "RestoreString":
-		in := []reflect.Value{reflect.ValueOf("codeleet"), reflect.ValueOf([]int{4,5,6,7,0,2,1,3})}
+		in := []reflect.Value{reflect.ValueOf("codeleet"), reflect.ValueOf([]int{4, 5, 6, 7, 0, 2, 1, 3})}
 		res := meth.Call(in)
 		check("leetcode", res[0].Interface())
 	case "BalancedStringSplit":
 		in := []reflect.Value{reflect.ValueOf("RLRRLLRLRL")}
 		res := meth.Call(in)
 		check(4, res[0].Interface())
+	case "SortMatrix":
+		in := []reflect.Value{reflect.ValueOf([][]int{{1, 1, 0, 0, 0},
+			{1, 1, 1, 1, 0},
+			{1, 0, 0, 0, 0},
+			{1, 1, 0, 0, 0},
+			{1, 1, 1, 1, 1}})}
+		res := meth.Call(in)
+		check([]int{2, 0, 3, 1, 4}, res[0].Interface())
+	case "ThreeSum":
+		in := []reflect.Value{reflect.ValueOf([]int{2, 1, 2, 3, 4}), reflect.ValueOf(7)}
+		res := meth.Call(in)
+		check(true, res[0].Interface())
 	default:
 		// current debug problem
 		meth.Call(nil)
 	}
 }
 
-func check(a interface{}, b interface{}){
+func check(a interface{}, b interface{}) {
 	fmt.Printf("your output: %v, expected answer: %v \n", b, a)
 
 	if reflect.TypeOf(a).Kind() == reflect.Slice {
