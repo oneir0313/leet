@@ -45,4 +45,4 @@
 
 ### Run Study Test
 
-```go test -run=TestSliceAllocate -v ./study/...```
+```go test -run=TestSliceAppend -v ./study/...```

@@ -2,7 +2,7 @@ package study
 
 import "fmt"
 
-func sliceAllocate() []int {
+func sliceAppend() []int {
 	nums := make([]int, 0)
 	nums = append(nums, 1)
 	nums = append(nums, 2)
