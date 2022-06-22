@@ -1,8 +1,8 @@
-package problems
+package study
 
 import "fmt"
 
-func (p Problem) SliceAllocate() {
+func sliceAllocate() []int {
 	nums := make([]int, 0)
 	nums = append(nums, 1)
 	nums = append(nums, 2)
@@ -25,4 +25,5 @@ func (p Problem) SliceAllocate() {
 	newNums2 := append(newNums, 8)
 	fmt.Printf("newNums: %v\n", newNums)
 	fmt.Printf("newNums2: %v\n", newNums2)
+	return newNums2
 }

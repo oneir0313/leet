@@ -42,3 +42,7 @@
 ```
     go run leet.go -p TwoSum
 ```
+
+### Run Study Test
+
+```go test -run=TestSliceAllocate -v ./study/...```
