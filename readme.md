@@ -45,4 +45,6 @@
 
 ### Run Study Test
 
-```go test -run=TestSliceAppend -v ./study/...```
+1. ```go test -run=TestSliceAppend -v ./study/...```
+
+2. ```go test -bench=. -run=none  -v ./study/...```
