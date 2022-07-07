@@ -167,6 +167,10 @@ func main() {
 		in := []reflect.Value{reflect.ValueOf([]int{7, 1, 5, 3, 6, 4})}
 		res := meth.Call(in)
 		check(7, res[0].Interface())
+	case "MinPartitions": 
+		in := []reflect.Value{reflect.ValueOf("27346209830709182346")}
+		res := meth.Call(in)
+		check(9, res[0].Interface())
 	case "Default":
 		// current debug problem
 		meth.Call([]reflect.Value{})
