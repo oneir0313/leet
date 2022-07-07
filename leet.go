@@ -163,6 +163,10 @@ func main() {
 		in := []reflect.Value{reflect.ValueOf([]int{2, 1, 2, 3, 4}), reflect.ValueOf(7)}
 		res := meth.Call(in)
 		check(true, res[0].Interface())
+	case "MaxProfit":
+		in := []reflect.Value{reflect.ValueOf([]int{7, 1, 5, 3, 6, 4})}
+		res := meth.Call(in)
+		check(7, res[0].Interface())
 	default:
 		// current debug problem
 		meth.Call(nil)

@@ -13,7 +13,6 @@ import "sort"
 // row[] of mat 只要遇到0後面則都是0
 // Output: [2,0,3,1,4]
 
-
 func (p Problem) SortMatrix(matrix [][]int) []int {
 	res := make([]int, len(matrix))
 	sum := make([][]int, len(matrix))
