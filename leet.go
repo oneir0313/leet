@@ -167,9 +167,9 @@ func main() {
 		in := []reflect.Value{reflect.ValueOf([]int{7, 1, 5, 3, 6, 4})}
 		res := meth.Call(in)
 		check(7, res[0].Interface())
-	default:
+	case "Default":
 		// current debug problem
-		meth.Call(nil)
+		meth.Call([]reflect.Value{})
 	}
 }
 
