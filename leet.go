@@ -171,6 +171,10 @@ func main() {
 		in := []reflect.Value{reflect.ValueOf("27346209830709182346")}
 		res := meth.Call(in)
 		check(9, res[0].Interface())
+	case "ValidAnagram":
+		in := []reflect.Value{reflect.ValueOf("anagram"), reflect.ValueOf("nagaram")}
+		res := meth.Call(in)
+		check(true, res[0].Interface())
 	case "Default":
 		// current debug problem
 		meth.Call([]reflect.Value{})
@@ -182,14 +186,14 @@ func check(a interface{}, b interface{}) {
 
 	if reflect.TypeOf(a).Kind() == reflect.Slice {
 		if reflect.DeepEqual(a, b) {
-			fmt.Println("answer is correct!")
+			fmt.Println("\033[32manswer is correct!")
 			return
 		}
-		fmt.Println("answer is wrong!")
+		fmt.Println("\033[31manswer is wrong!")
 	}
 	if a == b {
-		fmt.Println("answer is correct!")
+		fmt.Println("\033[32manswer is correct!")
 		return
 	}
-	fmt.Println("answer is wrong!")
+	fmt.Println("\033[31manswer is wrong!")
 }
