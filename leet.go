@@ -159,7 +159,7 @@ func main() {
 			{1, 1, 1, 1, 1}})}
 		res := meth.Call(in)
 		check([]int{2, 0, 3, 1, 4}, res[0].Interface())
-	case "ThreeSum":
+	case "ThreeSumTarget":
 		in := []reflect.Value{reflect.ValueOf([]int{2, 1, 2, 3, 4}), reflect.ValueOf(7)}
 		res := meth.Call(in)
 		check(true, res[0].Interface())
@@ -175,6 +175,14 @@ func main() {
 		in := []reflect.Value{reflect.ValueOf("anagram"), reflect.ValueOf("nagaram")}
 		res := meth.Call(in)
 		check(true, res[0].Interface())
+	case "ThreeSum":
+		in := []reflect.Value{reflect.ValueOf([]int{-1,0,1,2,-1,-4})}
+		res := meth.Call(in)
+		check([][]int{{0,1,-1},{-1,2,-1}}, res[0].Interface())
+	case "MaxWidthOfVerticalArea":
+		in := []reflect.Value{reflect.ValueOf([][]int{{8,7},{9,9},{7,4},{9,7}})}
+		res := meth.Call(in)
+		check(1, res[0].Interface())
 	case "Default":
 		// current debug problem
 		meth.Call([]reflect.Value{})
