@@ -183,6 +183,10 @@ func main() {
 		in := []reflect.Value{reflect.ValueOf([][]int{{8,7},{9,9},{7,4},{9,7}})}
 		res := meth.Call(in)
 		check(1, res[0].Interface())
+	case "MergeIntervals": 
+		in := []reflect.Value{reflect.ValueOf([][]int{{2,3},{2,2},{3,3},{1,3},{5,7},{2,2},{4,6}})}
+		res := meth.Call(in)
+		check(1, res[0].Interface())
 	case "Default":
 		// current debug problem
 		meth.Call([]reflect.Value{})
