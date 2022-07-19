@@ -167,7 +167,7 @@ func main() {
 		in := []reflect.Value{reflect.ValueOf([]int{7, 1, 5, 3, 6, 4})}
 		res := meth.Call(in)
 		check(7, res[0].Interface())
-	case "MinPartitions": 
+	case "MinPartitions":
 		in := []reflect.Value{reflect.ValueOf("27346209830709182346")}
 		res := meth.Call(in)
 		check(9, res[0].Interface())
@@ -176,15 +176,15 @@ func main() {
 		res := meth.Call(in)
 		check(true, res[0].Interface())
 	case "ThreeSum":
-		in := []reflect.Value{reflect.ValueOf([]int{-1,0,1,2,-1,-4})}
+		in := []reflect.Value{reflect.ValueOf([]int{-1, 0, 1, 2, -1, -4})}
 		res := meth.Call(in)
-		check([][]int{{0,1,-1},{-1,2,-1}}, res[0].Interface())
+		check([][]int{{0, 1, -1}, {-1, 2, -1}}, res[0].Interface())
 	case "MaxWidthOfVerticalArea":
-		in := []reflect.Value{reflect.ValueOf([][]int{{8,7},{9,9},{7,4},{9,7}})}
+		in := []reflect.Value{reflect.ValueOf([][]int{{8, 7}, {9, 9}, {7, 4}, {9, 7}})}
 		res := meth.Call(in)
 		check(1, res[0].Interface())
-	case "MergeIntervals": 
-		in := []reflect.Value{reflect.ValueOf([][]int{{2,3},{2,2},{3,3},{1,3},{5,7},{2,2},{4,6}})}
+	case "MergeIntervals":
+		in := []reflect.Value{reflect.ValueOf([][]int{{2, 3}, {2, 2}, {3, 3}, {1, 3}, {5, 7}, {2, 2}, {4, 6}})}
 		res := meth.Call(in)
 		check(1, res[0].Interface())
 	case "Default":

@@ -7,15 +7,15 @@ import "sort"
 func (p Problem) ThreeSum(nums []int) [][]int {
 	n := len(nums)
 
-	// Brute Force 暴力法 
-	// 透過使用sorted int array作為key值之map避免duplicate值 
+	// Brute Force 暴力法
+	// 透過使用sorted int array作為key值之map避免duplicate值
 	tripletMap := make(map[[3]int][]int)
 	for i := 0; i < n-2; i++ {
 		for j := i + 1; j < n-1; j++ {
 			for k := j + 1; k < n; k++ {
 				triplet := [3]int{nums[i], nums[j], nums[k]}
 				sort.Ints(triplet[:])
-				
+
 				if nums[i]+nums[j]+nums[k] == 0 {
 					tripletMap[triplet] = []int{nums[i], nums[j], nums[k]}
 				}
