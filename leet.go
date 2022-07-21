@@ -187,6 +187,11 @@ func main() {
 		in := []reflect.Value{reflect.ValueOf([][]int{{2, 3}, {2, 2}, {3, 3}, {1, 3}, {5, 7}, {2, 2}, {4, 6}})}
 		res := meth.Call(in)
 		check(1, res[0].Interface())
+	case "Permute":
+		in := []reflect.Value{reflect.ValueOf([]int{1,2,3})}
+		res := meth.Call(in)
+		ans := res[0].Interface()
+		check([][]int{{3,2,1},{2,3,1},{2,1,3},{3,1,2},{1,3,2},{1,2,3}}, ans)
 	case "Default":
 		// current debug problem
 		meth.Call([]reflect.Value{})
