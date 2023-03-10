@@ -192,6 +192,10 @@ func main() {
 		res := meth.Call(in)
 		ans := res[0].Interface()
 		check([][]int{{3,2,1},{2,3,1},{2,1,3},{3,1,2},{1,3,2},{1,2,3}}, ans)
+	case "RomanToInt":
+		in := []reflect.Value{reflect.ValueOf("MDCCCLXXXIV")}
+		res := meth.Call(in)
+		check(1884, res[0].Interface())
 	case "Default":
 		// current debug problem
 		meth.Call([]reflect.Value{})
