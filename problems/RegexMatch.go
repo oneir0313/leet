@@ -16,32 +16,27 @@ func (p Problem) RegexMatch(s string, pa string) bool {
 
 // DP
 func IsMatch(s string, p string) bool {
-	m := len(s)
-	n := len(p)
-	dp := make([][]bool, m+1)
+	n := len(s)
+	m := len(p)
+	dp := make([][]bool, n+1)
 	for i := range dp {
-		dp[i] = make([]bool, n+1)
+		dp[i] = make([]bool, m+1)
 	}
 	dp[0][0] = true
-	for i := 2; i <= n; i += 2 {
-		if p[i-1] == '*' {
-			dp[0][i] = dp[0][i-2]
-		}
+	if m > 0 && n > 0 {
+		dp[1][1] = s[0] == p[0] || p[0] == '.'
 	}
-	for i := 1; i <= m; i++ {
-		for j := 1; j <= n; j++ {
-			sc := s[i-1]
-			pc := p[j-1]
-			if sc == pc || pc == '.' {
-				dp[i][j] = dp[i-1][j-1]
-			} else if pc == '*' {
-				if dp[i][j-2] {
-					dp[i][j] = true
-				} else if sc == p[j-2] || p[j-2] == '.' {
-					dp[i][j] = dp[i-1][j]
-				}
+	for j := 2; j <= m; j++ {
+		dp[0][j] = dp[0][j-2] && p[j-1] == '*'
+	}
+	for i := 1; i <= n; i += 1 {
+		for j := 2; j <= m; j += 1 {
+			if p[j-1] != '*' {
+				dp[i][j] = dp[i-1][j-1] && (s[i-1] == p[j-1] || p[j-1] == '.')
+			} else {
+				dp[i][j] = dp[i][j-2] || (dp[i-1][j] && (s[i-1] == p[j-2] || p[j-2] == '.'))
 			}
 		}
 	}
-	return dp[m][n]
+	return dp[n][m]
 }
